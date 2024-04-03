@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Patch,
-  Post,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -30,7 +29,7 @@ export class UserController {
 
   @Delete()
   @UseGuards(JwtAuthGuard)
-  deleteUser(@Req() req) {
+  deleteUser(@Req() req): Promise<boolean> {
     const user = req.user;
     return this.userService.deleteUser(user.email);
   }
